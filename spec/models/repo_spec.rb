@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Repo, type: :model do
+RSpec.describe(Repo, type: :model) do
   subject { build(:repo) }
 
   describe 'associations' do

@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    has_many :repos, dependent: :destroy
+  has_many :repos, dependent: :destroy
 
-    validates :name, :login, presence:true
+  validates :name, :login, presence: true
 end
