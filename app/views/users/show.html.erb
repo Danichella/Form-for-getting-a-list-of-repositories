@@ -1,0 +1,20 @@
+<div class="container main-div">
+    <div class="login-div">
+        <p class="login-title">Enter your GitHub login:</p>
+
+        <%= render 'users/form' %>
+    </div>
+    <% if @user %>
+        <p class="user-name-p">
+            GitHub name: <%= @user.name %>
+        </p>
+    <% end %>
+    
+    <% if @repos %>
+        <p class="repos-title"> GitHub repositories: </p> 
+        </br>
+        <%= render partial: 'repos/repos', collection: @repos, as: :repo %>
+    <% end %>
+
+
+</div>
