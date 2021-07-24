@@ -4,16 +4,16 @@
 
         <%= render 'users/form' %>
     </div>
-    <% if @user %>
+    <% if @user_name %>
         <p class="user-name-p">
-            GitHub name: <%= @user.name %>
+            GitHub name: <%= @user_name %>
         </p>
     <% end %>
     
-    <% if @repos %>
+    <% if @repos_name %>
         <p class="repos-title"> GitHub repositories: </p> 
         </br>
-        <%= render partial: 'repos/repos', collection: @repos, as: :repo %>
+        <%= render partial: 'repos/repos', collection: @repos_name, as: :name %>
     <% end %>
 
 
