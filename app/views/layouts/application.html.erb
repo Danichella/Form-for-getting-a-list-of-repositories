@@ -10,6 +10,12 @@
   </head>
 
   <body>
+
+    <div class="container mt-2">
+      <%= render partial: 'layouts/flash', flash: flash %>
+    </div>
+
+
     <%= yield %>
   </body>
 </html>

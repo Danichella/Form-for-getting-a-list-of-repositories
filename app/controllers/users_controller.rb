@@ -8,11 +8,23 @@ class UsersController < ApplicationController
   end
 
   def create
-    redirect_to "/users/#{find_user_by_login(params[:login])}"
+    respond_to do |format|
+      if find_user_by_login(params[:login])
+        format.html { redirect_to "/users/#{find_user_by_login(params[:login])}" }
+      else
+        format.html { redirect_to root_path, notice: 'Invalid username' }
+      end
+    end
   end
 
   def update
-    redirect_to "/users/#{find_user_by_login(params[:login])}"
+    respond_to do |format|
+      if find_user_by_login(params[:login])
+        format.html { redirect_to "/users/#{find_user_by_login(params[:login])}" }
+      else
+        format.html { redirect_to "/users/#{params[:id]}", notice: 'Invalid username' }
+      end
+    end
   end
 
   private
