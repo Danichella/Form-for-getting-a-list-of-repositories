@@ -6,38 +6,3 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
-user_a = User.create!(
-    login: 'Semen',
-    name: Faker::Name.first_name
-)
-
-user_b = User.create!(
-    login: Faker::Internet.username,
-    name: Faker::Name.first_name
-)
-
-Repo.create!(
-    name: Faker::Name.first_name,
-    user: user_a
-)
-
-Repo.create!(
-    name: Faker::Name.first_name,
-    user: user_a
-)
-
-Repo.create!(
-    name: Faker::Name.first_name,
-    user: user_a
-)
-
-Repo.create!(
-    name: Faker::Name.first_name,
-    user: user_b
-)
-
-Repo.create!(
-    name: Faker::Name.first_name,
-    user: user_b
-)

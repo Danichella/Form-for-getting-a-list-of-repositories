@@ -44,6 +44,7 @@ gem 'rubocop-rails', '~> 2.7.1', require: false
 gem 'rubocop-rspec', '~> 2.4.0', require: false
 gem 'bootstrap'
 gem 'twitter-bootstrap-rails'
+gem 'jslint_on_rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
