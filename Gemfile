@@ -42,6 +42,7 @@ gem 'graphql'
 gem 'rubocop', '~> 1.0', require: false
 gem 'rubocop-rails', '~> 2.7.1', require: false
 gem 'rubocop-rspec', '~> 2.4.0', require: false
+gem 'bootstrap', '~> 4.0.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -50,6 +51,8 @@ group :development, :test do
   gem 'faker'
   gem 'rspec-rails', '~> 5.0.0'
   gem 'shoulda-matchers', '~> 5.0'
+  gem 'pry'
+  gem 'rails-controller-testing'
 end
 
 group :development do

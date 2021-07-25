@@ -1,0 +1,57 @@
+@import "bootstrap";
+
+.main-div{
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+}
+
+.login-div{
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-title{
+    font-size: 30px;
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-bottom: 20px;
+}
+
+.login-form-div{
+    display: flex;
+    flex-direction: column;
+}
+
+.form-field-login{
+    font-size: 25px;
+    font-weight: 100;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.search-btn{
+    align-self: center;
+    width: fit-content;
+    border: 0px solid;
+    border-radius: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: #0394fc;
+    margin-top: 20px;
+    color: white;
+    font-size: 25px
+}
+
+.user-name-p{
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 600;
+    font-size: 25px;
+    margin-top: 50px;
+    padding-bottom: 15px;
+    border-bottom: solid 1px #4f4f4f;
+}
