@@ -11,7 +11,7 @@ module Mutations
 
     def resolve(login:)
       user = User.find_by(login: login)
-      create_user(login) unless user
+      user ||= create_user(login)
       create_repos(login, user)
       return {} unless user
 
@@ -34,7 +34,7 @@ module Mutations
         rescue TypeError
           next
         end
-        Repo.create(params)
+        Repo.create(params) unless Repo.find_by(name: params[:name], user: user)
       end
     end
   end

@@ -13,7 +13,9 @@
     <% if @repos_name %>
         <p class="repos-title"> GitHub repositories: </p> 
         </br>
-        <%= render partial: 'repos/repos', collection: @repos_name, as: :name %>
+        <div id="names-of-repos">
+            <%= render partial: 'repos/repos', collection: @repos_name, as: :name %>
+        </div>
     <% end %>
 
 

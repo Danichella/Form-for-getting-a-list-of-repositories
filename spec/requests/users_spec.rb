@@ -18,7 +18,7 @@ RSpec.describe 'Users', type: :request do
   describe 'PUTS /users' do
     it 'creates user record' do
       expect do
-        post '/users', params: { login: 'danichella', name: 'Даниїл' }
+        post '/users', params: { login: 'danichella' }
       end.to change { User.count }.by(1)
     end
   end
