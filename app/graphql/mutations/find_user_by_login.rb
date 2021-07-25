@@ -1,5 +1,3 @@
-require 'faraday'
-
 module Mutations
   # @params login [String] login
   # @return [UserType] user object that has this login
