@@ -7,8 +7,7 @@ module Mutations
     field :repos_name, [String], null: true
 
     def resolve(user_id:)
-      temprorary = Repo.where(user_id: user_id)
-      repos_name = temprorary.map(&:name)
+      repos_name = Repo.where(user_id: user_id).map(&:name)
       return {} unless repos_name
 
       { repos_name: repos_name }
