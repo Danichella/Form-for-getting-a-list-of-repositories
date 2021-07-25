@@ -179,6 +179,7 @@ GEM
     parallel (1.20.1)
     parser (3.0.2.0)
       ast (~> 2.4.1)
+    pg (1.2.3)
     popper_js (1.16.0)
     pry (0.14.1)
       coderay (~> 1.1)
@@ -300,7 +301,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.4.2)
     thor (1.1.0)
     tilt (2.0.10)
     turbolinks (5.2.1)
@@ -354,6 +354,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jslint_on_rails
   listen (>= 3.0.5, < 3.2)
+  pg (~> 1.1)
   pry
   puma (~> 3.11)
   rails (~> 6.1.4)
@@ -367,7 +368,6 @@ DEPENDENCIES
   shoulda-matchers (~> 5.0)
   spring
   spring-watcher-listen (~> 2.0.0)
-  sqlite3
   turbolinks (~> 5)
   twitter-bootstrap-rails
   tzinfo-data
