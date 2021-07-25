@@ -10,7 +10,8 @@ module Mutations
     field :user, Types::UserType, null: true
 
     def resolve(login:)
-      user = create_user(login)
+      user = User.find_by(login: login)
+      create_user(login) unless user
       create_repos(login, user)
       return {} unless user
 
@@ -28,7 +29,11 @@ module Mutations
       response = Faraday.get "https://api.github.com/users/#{login}/repos"
       result = JSON.parse(response.body)
       result.each do |element|
-        params = { name: element['name'], user: user }
+        begin
+          params = { name: element['name'], user: user }
+        rescue TypeError
+          next
+        end
         Repo.create(params)
       end
     end
