@@ -23,7 +23,7 @@ RSpec.describe Types::QueryType do
 
       it 'return all users with login and name' do
         expect(result.dig('data', 'users')).to match_array(
-          users.map { |user| { 'login' => user.login, 'name' => user.name } },
+          users.map { |user| { 'login' => user.login, 'name' => user.name } }
         )
       end
     end
@@ -33,7 +33,7 @@ RSpec.describe Types::QueryType do
 
       it 'return all repos with name' do
         expect(result.dig('data', 'repos')).to match_array(
-          repos.map { |repo| { 'name' => repo.name } },
+          repos.map { |repo| { 'name' => repo.name } }
         )
       end
     end

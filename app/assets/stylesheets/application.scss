@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+ @import "bootstrap";
+
+ .custom{
+   margin-left: auto;
+   margin-right: auto;
+   background-color: #a8f2ff;
+   color: black;
+   font-family: 'Times New Roman', Times, serif;
+   font-size: 20px;
+   width: fit-content;
+ }

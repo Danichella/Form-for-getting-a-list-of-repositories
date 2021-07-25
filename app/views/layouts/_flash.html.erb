@@ -1,0 +1,7 @@
+<div class="container" style="display: flex;">
+  <% flash.each do |type, msg| %>
+    <div class="alert alert-<%= type.to_s == 'notice' ? 'success' : 'danger' %> alert-dismissable custom">
+      <%= msg %>
+    </div>
+  <% end %>
+</div>
