@@ -13,5 +13,16 @@ jobs:
       - run: bundle install
       - name: Rubocop
         run: rubocop
+      - name: Install packages
+        run: |
+          yarn install --pure-lockfile
+
+      - name: Setup test database
+        env:
+          RAILS_ENV: test
+          PGHOST: localhost
+          PGUSER: myapp
+        run: |
+          bin/rails db:setup
       - name: Rspec
         run: bundle exec rspec
