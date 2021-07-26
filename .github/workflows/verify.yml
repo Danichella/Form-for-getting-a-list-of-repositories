@@ -5,6 +5,21 @@ on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
     steps:
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@477b21f02be01bcb8030d50f37cfec92bfa615b6
@@ -13,16 +28,23 @@ jobs:
       - run: bundle install
       - name: Rubocop
         run: rubocop
-      - name: Install packages
-        run: |
-          yarn install --pure-lockfile
 
-      - name: Setup test database
+      - name: Install PostgreSQL client
+        run: |
+          sudo apt-get -yqq install libpq-dev
+
+      - name: Build App
         env:
-          RAILS_ENV: test
           PGHOST: localhost
-          PGUSER: myapp
+          PGUSER: postgres
+          PGPASSWORD: postgres
+          RAILS_ENV: test
         run: |
           bin/rails db:setup
-      - name: Rspec
+      - name: Run Tests
+        env:
+          PGHOST: localhost
+          PGUSER: postgres
+          PGPASSWORD: postgres
+          RAILS_ENV: test
         run: bundle exec rspec
