@@ -1,5 +1,5 @@
 module Mutations
-  require 'faraday'
+  # require 'faraday'
   # @params login [String] login
   # @return [UserType] user object that has this login
   class FindUserByLogin < Mutations::BaseMutation

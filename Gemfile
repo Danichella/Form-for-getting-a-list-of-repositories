@@ -45,6 +45,7 @@ gem 'rubocop-rspec', '~> 2.4.0', require: false
 gem 'bootstrap'
 gem 'twitter-bootstrap-rails'
 gem 'jslint_on_rails'
+gem 'faraday'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -55,7 +56,6 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 5.0'
   gem 'pry'
   gem 'rails-controller-testing'
-  gem 'faraday'
 end
 
 group :development do
