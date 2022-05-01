@@ -35,15 +35,13 @@ jobs:
 
       - name: Build App
         env:
-          PGHOST: localhost
           PGUSER: postgres
           PGPASSWORD: postgres
           RAILS_ENV: test
         run: |
-          bin/rails db:setup
+          bundle exec rails db:create db:migrate db:test:prepare
       - name: Run Tests
         env:
-          PGHOST: localhost
           PGUSER: postgres
           PGPASSWORD: postgres
           RAILS_ENV: test
