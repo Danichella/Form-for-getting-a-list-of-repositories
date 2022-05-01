@@ -1,0 +1,16 @@
+<div class="user-info-div">
+  <% if @user['name'].present? %>
+    <span class="user-name-span">
+      GitHub name:
+      <a class="user-name-a" href=<%= @user['profileUrl'] %>>
+        <%= @user['name']%>
+      </a>
+    </span>
+  <% elsif @user['error'].present? %>
+    <span class="user-name-span"><%= @user['error'] %></span>
+  <% end %>
+
+  <% if @user['avatarUrl'] %>
+    <img src=<%= @user['avatarUrl'] %> alt="Avatar" class="user-avatar-img"/>
+  <% end %>
+</div>

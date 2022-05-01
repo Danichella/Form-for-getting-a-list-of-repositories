@@ -126,3 +126,8 @@ Metrics/BlockLength:
   IgnoredMethods:
     - 'describe'
 
+Metrics/MethodLength:
+  Max: 20
+  IgnoredMethods:
+    - 'prepare_variables'
+

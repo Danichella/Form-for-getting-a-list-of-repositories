@@ -25,6 +25,7 @@ class GraphqlController < ApplicationController
 
   # Handle variables in form data, JSON body, or a blank value
   def prepare_variables(variables_param)
+    logger.debug(params[:variables])
     case variables_param
     when String
       if variables_param.present?

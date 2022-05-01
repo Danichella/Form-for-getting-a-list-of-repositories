@@ -4,13 +4,20 @@ module Mutations
   class FindRepoByUserId < Mutations::BaseMutation
     argument :user_id, Integer, required: true
 
-    field :repos_name, [String], null: true
+    field :repos, [Types::RepoType], null: true
 
     def resolve(user_id:)
-      repos_name = Repo.where(user_id: user_id).map(&:name)
-      return {} unless repos_name
+      user = User.find_by(id: user_id)
+      repos = user&.repos
+      if repos.blank?
+        return(
+          {
+            repos: [{ name: "#{user&.name || user&.login || 'This user'} doesn't have any public repositories" }]
+          }
+        )
+      end
 
-      { repos_name: repos_name }
+      { repos: repos }
     end
   end
 end

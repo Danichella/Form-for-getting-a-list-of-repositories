@@ -10,13 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_22_133023) do
+ActiveRecord::Schema.define(version: 2022_05_01_164855) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "repos", force: :cascade do |t|
     t.string "name"
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "repo_url"
     t.index ["user_id"], name: "index_repos_on_user_id"
   end
 
@@ -25,6 +29,8 @@ ActiveRecord::Schema.define(version: 2021_07_22_133023) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "profile_url"
+    t.string "avatar_url"
   end
 
   add_foreign_key "repos", "users"

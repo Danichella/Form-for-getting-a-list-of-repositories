@@ -8,32 +8,49 @@ module Mutations
     field :user, Types::UserType, null: true
 
     def resolve(login:)
-      user = User.find_by(login: login)
-      user ||= create_user(login)
-      create_repos(login, user)
-      return {} unless user
+      return unless login
 
-      { user: user }
+      user = create_user(login)
+      create_repos(login, user)
+      return { user: { error: "GitHub user with username #{login} not found" } } unless user
+
+      { user: user.attributes }
     end
 
     def create_user(login)
-      response = Faraday.get "https://api.github.com/users/#{login}"
+      response = Faraday.get "https://api.github.com/users/#{login.delete(' ')}"
       result = JSON.parse(response.body)
-      params = { login: login, name: result['name'] }
-      User.create(params)
+      return if result['message'].present?
+
+      User.find_or_create_by(user_params(result))
     end
 
     def create_repos(login, user)
-      response = Faraday.get "https://api.github.com/users/#{login}/repos"
+      return unless user && login
+
+      response = Faraday.get "https://api.github.com/users/#{login.delete(' ')}/repos"
       result = JSON.parse(response.body)
+      return if result.blank?
+
       result.each do |element|
-        begin
-          params = { name: element['name'], user: user }
-        rescue TypeError
-          next
-        end
-        Repo.create(params) unless Repo.find_by(name: params[:name], user: user)
+        user.repos.find_or_create_by(repo_params(element))
       end
+    end
+
+    def user_params(response)
+      {
+        login: response['login'],
+        name: response['name'],
+        profile_url: response['html_url'],
+        avatar_url: response['avatar_url']
+      }
+    end
+
+    def repo_params(response)
+      {
+        name: response['name'],
+        repo_url: response['html_url']
+      }
     end
   end
 end

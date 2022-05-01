@@ -1,0 +1,51 @@
+.toaster-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 300px;
+    height: fit-content;
+    padding: 10px;
+    border: 1px solid gray;
+    -moz-box-shadow: 0 0 7px #999999;
+    -webkit-box-shadow: 0 0 7px #999999;
+    box-shadow: 0 0 7px #999999;
+    border-radius: 10px;
+}
+
+.toaster-header-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.toaster-title {
+    font-size: 20px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 600;
+    width: 100%;
+    color: #D72828;
+}
+
+.toaster-description {
+    font-size: 16px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    border-top: 1px solid gray;
+    padding-top: 10px;
+}
+
+.toaster-btn {
+    font-size: 16px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 600;
+    border: none;
+    background: none;
+}
+
+.toaster-img {
+    width: 20px;
+    margin-right: 5px;
+}

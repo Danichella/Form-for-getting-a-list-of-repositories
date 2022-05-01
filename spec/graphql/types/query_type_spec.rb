@@ -40,24 +40,47 @@ RSpec.describe Types::QueryType do
   end
 
   describe 'Mutation' do
-    let!(:user) { create(:user) }
+    subject(:result) do
+      FormForGettingAListOfRepositoriesSchema.execute(mutation).as_json
+    end
+    let(:user) { create(:user) }
+    let(:stubbed_users_response) do
+      {
+        login: user.login,
+        name: user.name,
+        html_url: user.profile_url,
+        avatar_url: user.avatar_url
+      }
+    end
+
+    before do
+      stub_request(:get, %r{api.github.com/users/#{user.login}})
+        .to_return(status: 200, body: stubbed_users_response.to_json, headers: {})
+      stub_request(:get, %r{api.github.com/users/#{user.login}/repos})
+        .to_return(status: 200, body: [].to_json, headers: {})
+    end
 
     context 'when find_user_by_login are queried' do
       let(:mutation) do
         %(mutation{
           findByLogin(input: {login: \"#{user.login}\"}){
             user{
-                id
+              login,
+              name,
+              profileUrl,
+              avatarUrl
             }
           }
       })
       end
 
-      subject(:result) do
-        FormForGettingAListOfRepositoriesSchema.execute(mutation).as_json
-      end
       it 'return user id found by login' do
-        expect(result.dig('data', 'findByLogin', 'user', 'id').to_i).to eq(user.id)
+        expect(result.dig('data', 'findByLogin', 'user')).to eq({
+          login: user.login,
+          name: user.name,
+          profileUrl: user.profile_url,
+          avatarUrl: user.avatar_url
+        }.stringify_keys)
       end
     end
 
@@ -72,9 +95,6 @@ RSpec.describe Types::QueryType do
       })
       end
 
-      subject(:result) do
-        FormForGettingAListOfRepositoriesSchema.execute(mutation).as_json
-      end
       it 'return user name found by login' do
         expect(result.dig('data', 'findById', 'user', 'name')).to eq(user.name)
       end
@@ -85,19 +105,17 @@ RSpec.describe Types::QueryType do
       let(:mutation) do
         %(mutation {
           findRepoByUserId(input: {userId: #{user.id}}) {
-            reposName
+            repos {
+              name
+            }
           }
       })
       end
 
-      subject(:result) do
-        FormForGettingAListOfRepositoriesSchema.execute(mutation).as_json
-      end
-
-      let(:names) { Repo.where(user_id: user.id).map(&:name) }
+      let(:expected_repos) { user.repos.map { |repo| { name: repo.name }.stringify_keys } }
 
       it 'return user name found by login' do
-        expect(result.dig('data', 'findRepoByUserId', 'reposName')).to match_array(names)
+        expect(result.dig('data', 'findRepoByUserId', 'repos')).to match_array(expected_repos)
       end
     end
   end
