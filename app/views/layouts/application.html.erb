@@ -7,14 +7,12 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_tag 'toaster' %>
   </head>
 
   <body>
 
-    <div class="container mt-2">
-      <%= render partial: 'layouts/flash', flash: flash %>
-    </div>
-
+    <%= render partial: 'layouts/flash', flash: flash %>
 
     <%= yield %>
   </body>

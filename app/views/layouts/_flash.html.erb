@@ -1,7 +1,10 @@
-<div class="container" style="display: flex;">
-  <% flash.each do |type, msg| %>
-    <div class="alert alert-<%= type.to_s == 'notice' ? 'success' : 'danger' %> alert-dismissable custom">
-      <%= msg %>
+<% flash.each do |type, msg| %>
+  <div class="toaster-container" onchange="handleToasterVisibility()">
+    <div class="toaster-header-container">
+      <%= image_tag("error_icon.svg", alt: "Error", class: "toaster-img") %>
+      <span class="toaster-title">Ooops</span>
+      <button class="toaster-btn" onclick="onToasterCloseHandler()">&#10006;</button>
     </div>
-  <% end %>
-</div>
+    <span class="toaster-description"><%= msg %></span>
+  </div>
+<% end %>

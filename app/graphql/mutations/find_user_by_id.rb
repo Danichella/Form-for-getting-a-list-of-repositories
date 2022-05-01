@@ -7,10 +7,10 @@ module Mutations
     field :user, Types::UserType, null: true
 
     def resolve(id:)
-      user = User.find_by!(id: id)
-      return {} unless user
+      user = User.find_by(id: id)
+      return { user: { error: "#{user&.login || 'This user'} doesn't have name" } } if user&.name.blank?
 
-      { user: user }
+      { user: user&.attributes }
     end
   end
 end

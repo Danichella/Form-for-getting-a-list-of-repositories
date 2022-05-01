@@ -1,9 +1,10 @@
 module Types
   class RepoType < Types::BaseObject
-    field :id, ID, null: false
+    field :id, ID, null: true
     field :name, String, null: true
-    field :user_id, Integer, null: false
-    field :created_at, GraphQL::Types::ISO8601DateTime, null: false
-    field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
+    field :repo_url, String, null: true
+    field :user_id, Integer, null: true
+    field :created_at, GraphQL::Types::ISO8601DateTime, null: true
+    field :updated_at, GraphQL::Types::ISO8601DateTime, null: true
   end
 end

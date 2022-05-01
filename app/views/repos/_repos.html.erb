@@ -1,3 +1,11 @@
 <div class="repo-div">
-    <p><%= name %></p>
+    <% if repo['repoUrl'].present? %>
+        <a class="repo-name-a" href=<%= repo['repoUrl'] %>>
+            <%= repo['name']%>
+        </a>
+    <% else %>
+        <span class="repo-name-span">
+            <%= repo['name']%>
+        </span>
+    <% end %>
 </div>
